@@ -1,19 +1,19 @@
+#include "stack.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE_S_MAX 3
 
-typedef struct filo {
+/*typedef struct filo {
     int size;
     int stack[SIZE_S_MAX];
-} filo;
-
+} Stack;
+*/
 /*
 constructeur
-pop
-top
-push
+-pop
+-top
+-push
 bouger(filo a, filo b){
     push(top(a),b);
     pop(a);
@@ -27,10 +27,11 @@ implementer liste avec sentinelle qui prendre des etats
 
 /*
 fonction de comparaison entre états
+ -comparaison stack
 */
 
 typedef struct etat {
-    filo pic[4];
+    Stack *pic;
     int heuristique;
 } etat;
 
