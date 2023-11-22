@@ -14,7 +14,7 @@
 
 /* Full definition of the s_stack structure */
 struct s_stack {
-    void **stack; // array of void *
+    int **stack; // array of void *
     int top;
     int capacity;
 };
@@ -49,7 +49,7 @@ Stack *stackPop(Stack *s) {
     return (s);
 }
 
-void *stackTop(Stack *s) {
+int *stackTop(Stack *s) {
     assert(!stackEmpty(s));
     return (s->stack[s->top]);
 }
@@ -62,12 +62,12 @@ void stackDump(FILE *f, Stack *s, void (*dumpfunction)(FILE *f, void *e)) {
         dumpfunction(f, s->stack[i]);
 }
 
-bool compareStack(Stack s1, Stack s2) {
-    if (s1.top != s2.top)
+bool compareStack(Stack *s1, Stack *s2) {
+    if (s1->top != s2->top)
         return false;
     else {
-        for (int i = s1.top; i > -1; i--) {
-            if (s1.stack[i] != s2.stack[i])
+        for (int i = s1->top; i > -1; i--) {
+            if (s1->stack[i] != s2->stack[i])
                 return false;
         }
         return true;

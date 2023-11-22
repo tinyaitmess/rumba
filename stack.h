@@ -54,7 +54,7 @@ Stack *stackPop(Stack *s);
  * @param s : the Stack to examine.
  * @return the value at the top of the stack.
  */
-void *stackTop(Stack *s);
+int *stackTop(Stack *s);
 
 /** Return true if the stack will overflow on the next push.
  * @param s : the Stack to examine.
@@ -67,5 +67,8 @@ bool stackOverflow(Stack *s);
  */
 void stackDump(FILE *f, Stack *s, void(*dumpfunction)(FILE *f, void *e));
 
-bool compareStack(Stack s1,Stack s2);
+bool compareStack(Stack *s1,Stack *s2);
+
+
+
 #endif

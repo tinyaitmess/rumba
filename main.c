@@ -29,7 +29,7 @@ implementer liste avec sentinelle qui prendre des etats
 fonction de comparaison entre états
  -comparaison stack
 */
-
+/**
 typedef struct etat {
     Stack *pic;
     int heuristique;
@@ -53,3 +53,5 @@ bool profondeurDabord(etat debut, etat *fin) {
         }
     }
 }
+*/
+int main() { return 0; }
