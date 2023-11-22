@@ -1,9 +1,6 @@
 /*-----------------------------------------------------------------*/
 /*
- Licence Informatique - Structures de données
- Mathias Paulin (Mathias.Paulin@irit.fr)
  
- Implantation du TAD Stack étudié en cours.
  
  */
 /*-----------------------------------------------------------------*/
@@ -65,10 +62,7 @@ bool stackOverflow(Stack *s);
 /** Dump the stack (print it) on the given FILE*
  * Dump the stack using the provided function that must dump the data to the given FILE*.
  */
-void stackDump(FILE *f, Stack *s, void(*dumpfunction)(FILE *f, void *e));
-
+void stackDump(FILE *f, Stack *s, void(*dumpfunction)(FILE *f, int *e));
+void stackFourDump(Stack *s1, Stack *s2, Stack *s3, Stack *s4);
 bool compareStack(Stack *s1,Stack *s2);
-
-
-
 #endif

@@ -45,7 +45,8 @@ tests : $(EXEC)
 
 etat.o : etat.h stack.h
 stack.o : stack.h
-main.o : stack.h etat.h
+list. o : list.h etat.h
+main.o : stack.h etat.h list.h
 doc : stack.h etat.h
 
 DELIVER_FMT=$(shell date "+$(shell id -un)_%d-%m-%y_%Hh%Mm%Ss")

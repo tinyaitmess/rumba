@@ -9,8 +9,9 @@
 /*-----------------------------------------------------------------*/
 #include "stack.h"
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
-#define STACK_SIZE 4
+#define STACK_SIZE 3
 
 /* Full definition of the s_stack structure */
 struct s_stack {
@@ -56,10 +57,25 @@ int *stackTop(Stack *s) {
 
 bool stackOverflow(Stack *s) { return s->top + 1 == s->capacity; }
 
-void stackDump(FILE *f, Stack *s, void (*dumpfunction)(FILE *f, void *e)) {
+void stackDump(FILE *f, Stack *s, void (*dumpfunction)(FILE *f, int *e)) {
     fprintf(f, "(%d) --  ", s->top + 1);
     for (int i = s->top; i >= 0; --i)
         dumpfunction(f, s->stack[i]);
+}
+
+void stackFourDump(Stack *s1, Stack *s2, Stack *s3, Stack *s4) {
+    int valeur;
+    for (int i = 3; i > -1; i--) {
+        valeur = s1->top >= i ? *s1->stack[i] : 0;
+        printf("| %d ", valeur);
+        valeur = s2->top >= i ? *s2->stack[i] : 0;
+        printf("| %d ", valeur);
+        valeur = s3->top >= i ? *s3->stack[i] : 0;
+        printf("| %d ", valeur);
+        valeur = s4->top >= i ? *s4->stack[i] : 0;
+        printf("| %d ", valeur);
+        printf("|\n");
+    }
 }
 
 bool compareStack(Stack *s1, Stack *s2) {
