@@ -17,6 +17,7 @@ Etat *pop(Liste *liste);
 bool listeContient(const Liste *liste, const ptrEtat etat);
 void afficherListe(const Liste *liste);
 void libererListe(Liste *liste);
+List *filsEtat(const Etat *e);
 
 
 #endif
