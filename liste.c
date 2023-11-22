@@ -17,7 +17,7 @@ typedef struct {
 void initialiserListe(Liste *liste) { liste->debut = NULL; }
 
 // Fonction pour ajouter un élément au début de la liste
-void ajouterDebutListe(Liste *liste, ptrEtat valeur) {
+void ajoutTete(Liste *liste, ptrEtat valeur) {
     // Créer un nouveau nœud
     Noeud *nouveauNoeud = (Noeud *)malloc(sizeof(Noeud));
     if (nouveauNoeud == NULL) {
@@ -60,7 +60,20 @@ void enleverFinListe(Liste *liste) {
     precedent->suivant = NULL;
 }
 
-bool listeContient(const Liste *liste, const ptrEtat etat) {
+Etat *pop(Liste *liste) {
+    Etat *tete;
+    if (liste->debut == NULL) {
+        fprintf(stderr, "La liste est vide.\n");
+        exit(EXIT_FAILURE);
+    }
+    Noeud *precedent = liste->debut;
+    tete = liste->debut->etat;
+    liste->debut = liste->debut->suivant;
+    free(precedent);
+    return tete;
+}
+
+bool listeContient(const Liste *liste, Etat *etat) {
     Noeud *courant = liste->debut;
 
     while (courant != NULL && !compareEtats(etat, courant->etat)) {

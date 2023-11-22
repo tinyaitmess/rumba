@@ -24,9 +24,9 @@ Etat *pushEtat(int i, Stack *s, Etat *e) {
     return e;
 }
 
-bool compareEtats(Etat e1, Etat e2) {
+bool compareEtats(Etat *e1, Etat *e2) {
     for (int i = 0; i < 4; i++) {
-        if (!compareStack(e1.pic[i], e2.pic[i]))
+        if (!compareStack(e1->pic[i], e2->pic[i]))
             return false;
     }
     return true;

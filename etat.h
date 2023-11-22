@@ -7,9 +7,9 @@
 
 typedef struct s_Etat Etat;
 
-typedef Etat* ptrList;
+typedef Etat* ptrEtat;
 
 Etat *createEtat();
 Etat *pushEtat(int i,Stack *s,Etat *e);
-bool compareEtats(Etat e1,Etat e2);
+bool compareEtats(Etat *e1,Etat *e2);
 #endif

@@ -1,3 +1,6 @@
+#include "etat.h"
+#include "list.h"
+
 #include "stack.h"
 #include <stdbool.h>
 #include <stdint.h>
@@ -36,14 +39,16 @@ typedef struct etat {
 } etat;
 
 bool testEtatBut(etat prochain) {}
-
-bool profondeurDabord(etat debut, etat *fin) {
-    fifo enAttente;
-    add(enAttente, debut);
-    list vus = malloc(sizeof(list));
+*/
+bool profondeurDabord(Etat *debut, Etat *fin) {
+    Liste *enAttente;
+    initialiserListe(enAttente);
+    ajoutTete(enAttente, debut);
+    Liste *vus;
+    initialiserListe(vus);
     bool trouve = false;
     while (enAttente != NULL && !trouve) {
-        etat prochain = pop(enAttente);
+        Etat *prochain = pop(enAttente);
         add(vus, prochain);
         if (testEtatBut(prochain)) {
             *fin = prochain;
@@ -53,5 +58,5 @@ bool profondeurDabord(etat debut, etat *fin) {
         }
     }
 }
-*/
+
 int main() { return 0; }
