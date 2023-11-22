@@ -107,3 +107,18 @@ void libererListe(Liste *liste) {
 
     liste->debut = NULL;
 }
+
+Liste *filsEtat(const Etat *e) {
+    Liste *l;
+    Etat *f;
+    initialiserListe(l);
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (j != i) {
+                f = bouger(e, i, j);
+                ajouterDebutListe(l, f);
+            }
+        }
+    }
+    return l;
+}
