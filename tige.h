@@ -45,7 +45,7 @@ Tige *tigePop(Tige *s);
  * @param s : the Stack to examine.
  * @return the value at the top of the stack.
  */
-int *tigeTop(Tige *s);
+int tigeTop(Tige *s);
 
 /** Return true if the stack will overflow on the next push.
  * @param s : the Stack to examine.
@@ -56,7 +56,7 @@ bool tigeOverflow(Tige *s);
 /** Dump the stack (print it) on the given FILE*
  * Dump the stack using the provided function that must dump the data to the given FILE*.
  */
-void TigeDump(FILE *f, Tige *s, void(*dumpfunction)(FILE *f, void *e));
+void TigeDump(FILE *f, Tige *s, void(*dumpfunction)(FILE *f, int e));
 
 bool compareTiges(Tige *s1,Tige *s2);
 
