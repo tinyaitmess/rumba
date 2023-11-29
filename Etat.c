@@ -32,15 +32,15 @@ bool compareEtats(Etat *e1, Etat *e2) {
     return true;
 }
 
-Etat *bouger(Etat* e, int i, int j) {
+Etat *bouger(Etat *e, int i, int j) {
     assert(0 <= i && i < 4 && 0 <= j && j < 4 && i != j);
     assert(!tigeEmpty(e->pic[i]));
     assert(!tigeOverflow(e->pic[j]));
     Etat *res = createEtat();
-    memcpy(&res, &e, sizeof(Etat* ));
+    memcpy(&res, &e, sizeof(Etat *));
     int top = tigeTop(res->pic[i]);
     tigePop(res->pic[i]);
-    tigePush(res->pic[j], &top);
+    tigePush(res->pic[j], top);
     return res;
 }
 

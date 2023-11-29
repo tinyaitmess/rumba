@@ -14,9 +14,10 @@ typedef struct {
 } retourPA;
 
 retourPA profondeurDabord(Etat *debut, Etat *fin) {
-    Pile *enAttente;
+    Pile *enAttente,*etatsFils;;
     Liste *vus, *chemin;
     retourPA r;
+    Etat *e;
     initialiserPile(enAttente);
     ajouterTete(enAttente, debut);
 
@@ -26,12 +27,17 @@ retourPA profondeurDabord(Etat *debut, Etat *fin) {
     while (!estVide(enAttente) && !trouve) {
         Etat *prochain = (Etat *)pop(enAttente);
         ajoutQueue(vus, prochain);
-        if (testEtatBut(prochain)) {
+        if (compareEtats(fin, prochain)) {
             r.fin = prochain;
             r.trouve = true;
             return r;
         } else {
-            for ()
+            etatsFils=filsEtat(prochain);
+            
+            while ((e=(Etat*)pop(etatsFils))!=NULL){
+                if (!listeContient(vus, e))
+                    ajouterTete(enAttente, e);
+            }
         }
     }
 }

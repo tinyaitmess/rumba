@@ -46,8 +46,7 @@ bool estVide(Pile *l) { return l->taille == 0; }
 void **pop(Pile *liste) {
     void *tete;
     if (liste->debut == NULL) {
-        fprintf(stderr, "La liste est vide.\n");
-        exit(EXIT_FAILURE);
+        return NULL;
     }
     Noeud *precedent = liste->debut;
     tete = liste->debut->element;
@@ -80,7 +79,7 @@ void libererListe(Pile *liste) {
     liste->debut = NULL;
 }
 
-Pile *filsEtat(const Etat *e) {
+Pile *filsEtat(Etat *e) {
     Pile *l;
     Etat *f;
     initialiserPile(l);

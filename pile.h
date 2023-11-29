@@ -1,3 +1,5 @@
+#include "etat.h"
+
 #ifndef PILE_H
 #define PILE_H
 
@@ -17,6 +19,7 @@ void* *pop(Pile *liste);
 
 void afficherPile(const Pile *liste);
 void libererPile(Pile *liste);
+Pile *filsEtat(Etat *e);
 
 
 #endif

@@ -47,7 +47,7 @@ int tigeTop(Tige *s) {
 
 bool tigeOverflow(Tige *s) { return s->top + 1 == s->capacity; }
 
-void tigeDump(FILE *f, Tige *s, void (*dumpfunction)(FILE *f, e)) {
+void tigeDump(FILE *f, Tige *s, void (*dumpfunction)(FILE *f, int e)) {
     fprintf(f, "(%d) --  ", s->top + 1);
     for (int i = s->top; i >= 0; --i)
         dumpfunction(f, s->tige[i]);
