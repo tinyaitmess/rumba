@@ -5,7 +5,7 @@
 
 /* Full definition of the s_stack structure */
 struct s_tige {
-    int **tige; // array of void *
+    int *tige;
     int top;
     int capacity;
 };
@@ -14,7 +14,7 @@ Tige *createTige() {
     Tige *s;
     size_t capacity = STACK_SIZE;
     s = malloc(sizeof(struct s_tige));
-    s->tige = malloc(sizeof(void *) * capacity);
+    s->tige = malloc(sizeof(int) * capacity);
     s->capacity = capacity;
     s->top = -1;
     return (s);
@@ -40,14 +40,14 @@ Tige *tigePop(Tige *s) {
     return (s);
 }
 
-int *tigeTop(Tige *s) {
+int tigeTop(Tige *s) {
     assert(!tigeEmpty(s));
     return (s->tige[s->top]);
 }
 
 bool tigeOverflow(Tige *s) { return s->top + 1 == s->capacity; }
 
-void tigeDump(FILE *f, Tige *s, void (*dumpfunction)(FILE *f, void *e)) {
+void tigeDump(FILE *f, Tige *s, void (*dumpfunction)(FILE *f, e)) {
     fprintf(f, "(%d) --  ", s->top + 1);
     for (int i = s->top; i >= 0; --i)
         dumpfunction(f, s->tige[i]);
@@ -68,13 +68,13 @@ bool compareTiges(Tige *s1, Tige *s2) {
 void tigeFourDump(Tige *s1, Tige *s2, Tige *s3, Tige *s4) {
     int valeur;
     for (int i = 3; i > -1; i--) {
-        valeur = s1->top >= i ? *s1->tige[i] : 0;
+        valeur = s1->top >= i ? s1->tige[i] : 0;
         printf("| %d ", valeur);
-        valeur = s2->top >= i ? *s2->tige[i] : 0;
+        valeur = s2->top >= i ? s2->tige[i] : 0;
         printf("| %d ", valeur);
-        valeur = s3->top >= i ? *s3->tige[i] : 0;
+        valeur = s3->top >= i ? s3->tige[i] : 0;
         printf("| %d ", valeur);
-        valeur = s4->top >= i ? *s4->tige[i] : 0;
+        valeur = s4->top >= i ? s4->tige[i] : 0;
         printf("| %d ", valeur);
         printf("|\n");
     }
