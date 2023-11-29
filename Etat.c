@@ -1,5 +1,6 @@
 #include "etat.h"
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -24,7 +25,7 @@ Etat *pushEtat(int i, Tige *s, Etat *e) {
     return e;
 }
 
-bool compareEtats(Etat *e1, Etat *e2) {
+bool compareEtats(const Etat *e1, const Etat *e2) {
     for (int i = 0; i < 4; i++) {
         if (!compareTiges(e1->pic[i], e2->pic[i]))
             return false;
@@ -32,10 +33,15 @@ bool compareEtats(Etat *e1, Etat *e2) {
     return true;
 }
 
-Etat *bouger(const Etat e, int i, int j) {
+Etat *bouger(const Etat *e, int i, int j) {
     assert(0 <= i && i < 4 && 0 <= j && j < 4 && i != j);
+<<<<<<< HEAD
     assert(!tigeEmpty(e.pic[i]));
     assert(!tigeOverflow(e.pic[j]));
+=======
+    assert(!stackEmpty(e->pic[i]));
+    assert(!stackOverflow(e->pic[j]));
+>>>>>>> main
     Etat *res = createEtat();
     memcpy(&res, &e, sizeof(Etat *));
     int *top = tigeTop(res->pic[i]);
@@ -45,7 +51,11 @@ Etat *bouger(const Etat e, int i, int j) {
 }
 
 void afficherEtat(const Etat *e) {
+<<<<<<< HEAD
     tigeFourDump(e->pic[0], e->pic[1], e->pic[2], e->pic[3]);
+=======
+    stackFourDump(e->pic[0], e->pic[1], e->pic[2], e->pic[3]);
+>>>>>>> main
     for (int i = 1; i < 4; i++) {
         printf("|p%d ", i);
     }
