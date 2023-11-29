@@ -1,4 +1,6 @@
 #include "pile.h"
+#include "etat.h"
+#include "tige.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -76,4 +78,19 @@ void libererListe(Pile *liste) {
     }
 
     liste->debut = NULL;
+}
+
+Pile *filsEtat(const Etat *e) {
+    Pile *l;
+    Etat *f;
+    initialiserPile(l);
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (j != i) {
+                f = bouger(e, i, j);
+                ajoutTete(l, f);
+            }
+        }
+    }
+    return l;
 }

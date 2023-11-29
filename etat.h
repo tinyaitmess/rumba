@@ -12,4 +12,5 @@ typedef Etat* ptrEtat;
 Etat *createEtat();
 Etat *pushEtat(int i,Tige *s,Etat *e);
 bool compareEtats(Etat *e1,Etat *e2);
+Etat *bouger(Etat *e, int i, int j);
 #endif

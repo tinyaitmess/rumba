@@ -24,7 +24,7 @@ retourPA profondeurDabord(Etat *debut, Etat *fin) {
     initialiserListe(chemin);
     bool trouve = false;
     while (!estVide(enAttente) && !trouve) {
-        Etat *prochain = pop(enAttente);
+        Etat *prochain = (Etat *)pop(enAttente);
         ajoutQueue(vus, prochain);
         if (testEtatBut(prochain)) {
             r.fin = prochain;
