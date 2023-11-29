@@ -11,26 +11,13 @@ typedef struct Noeud {
 // Structure représentant la liste
 typedef struct {
     Noeud *debut;
+    int taille;
 } Liste;
 
 // Fonction pour initialiser une liste vide
-void initialiserListe(Liste *liste) { liste->debut = NULL; }
-
-// Fonction pour ajouter un élément au début de la liste
-void ajoutTete(Liste *liste, ptrEtat valeur) {
-    // Créer un nouveau nœud
-    Noeud *nouveauNoeud = (Noeud *)malloc(sizeof(Noeud));
-    if (nouveauNoeud == NULL) {
-        fprintf(stderr, "Erreur d'allocation de mémoire.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    // Affecter la valeur au nouveau nœud
-    nouveauNoeud->etat = valeur;
-
-    // Lier le nouveau nœud au début de la liste
-    nouveauNoeud->suivant = liste->debut;
-    liste->debut = nouveauNoeud;
+void initialiserListe(Liste *liste) {
+    liste->debut = NULL;
+    liste->taille = 0;
 }
 
 // Fonction pour enlever un élément en fin de liste
@@ -55,22 +42,36 @@ void enleverFinListe(Liste *liste) {
 
     // Libérer le dernier nœud
     free(precedent->suivant);
-
+    liste->taille--;
     // Mettre le pointeur suivant du nœud précédent à NULL pour indiquer la fin de la liste
     precedent->suivant = NULL;
 }
 
-Etat *pop(Liste *liste) {
-    Etat *tete;
-    if (liste->debut == NULL) {
-        fprintf(stderr, "La liste est vide.\n");
+bool estVide(Liste *l) { return l->taille == 0; }
+
+void ajoutQueue(Liste *l, Etat *e) {
+    Noeud *nouveauNoeud = (Noeud *)malloc(sizeof(Noeud));
+    if (nouveauNoeud == NULL) {
+        fprintf(stderr, "Erreur d'allocation de mémoire.\n");
         exit(EXIT_FAILURE);
     }
-    Noeud *precedent = liste->debut;
-    tete = liste->debut->etat;
-    liste->debut = liste->debut->suivant;
-    free(precedent);
-    return tete;
+    nouveauNoeud->etat = e;
+    nouveauNoeud->suivant = NULL; // Assurez-vous de définir le suivant sur NULL
+
+    if (l->debut == NULL) {
+        // La liste est vide, donc le nouveau nœud est le début de la liste
+        l->debut = nouveauNoeud;
+    } else {
+        // Trouver le dernier nœud dans la liste
+        Noeud *dernier = l->debut;
+        while (dernier->suivant != NULL) {
+            dernier = dernier->suivant;
+        }
+
+        // Ajouter le nouveau nœud à la fin de la liste
+        dernier->suivant = nouveauNoeud;
+    }
+    l->taille++;
 }
 
 bool listeContient(const Liste *liste, Etat *etat) {
