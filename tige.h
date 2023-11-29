@@ -24,7 +24,7 @@ void deleteTige(ptrTige *s);
  * @return the modified stack.
  * @note implemented using side effect on the stack. After execution, s is the same than the returned stack.
  */
-Tige *tigePush(Tige *s, void * e);
+Tige *tigePush(Tige *s, int e);
 
 /** Test if a stack is empty.
  * @param s : the Stack to test.

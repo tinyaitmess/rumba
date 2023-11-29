@@ -26,9 +26,9 @@ void deleteStack(ptrTige *s) {
     *s = NULL;
 }
 
-Tige *tigePush(Tige *s, void *e) {
+Tige *tigePush(Tige *s, int e) {
     assert(s->top != STACK_SIZE - 1);
-    s->tige[++(s->top)] = (int)e;
+    s->tige[++(s->top)] = e;
     return (s);
 }
 
