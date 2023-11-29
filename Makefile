@@ -43,10 +43,10 @@ doc: rng.h skiplist.h
 tests : $(EXEC)
 	@$(BASH) ../Test/test_script.sh $(EXEC)
 
-etat.o : etat.h stack.h
-stack.o : stack.h
-main.o : stack.h etat.h
-doc : stack.h etat.h
+etat.o : etat.h tige.h
+stack.o : tige.h
+main.o : tige.h etat.h
+doc : tige.h etat.h
 
 DELIVER_FMT=$(shell date "+$(shell id -un)_%d-%m-%y_%Hh%Mm%Ss")
 
