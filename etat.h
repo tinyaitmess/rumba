@@ -11,6 +11,8 @@ typedef Etat* ptrEtat;
 
 Etat *createEtat();
 Etat *pushEtat(int i,Tige *s,Etat *e);
+Tige *tige_num(Etat *e, int i );
+int nv_noeud(Etat *e);
 bool compareEtats(Etat *e1,Etat *e2);
-Etat *bouger(Etat *e, int i, int j);
+Etat *bouger(Etat *e, int i, int j,int nv);
 #endif

@@ -6,11 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Noeud Noeud;
+typedef struct N Noeud;
 
 typedef struct l Liste;
 
-void initialiserListe(Liste *liste);
+Liste *initialiserListe();
 
 void enleverFinListe(Liste *liste);
 bool estVide(Liste *l);

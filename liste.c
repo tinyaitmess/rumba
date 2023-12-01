@@ -1,23 +1,26 @@
 #include "etat.h"
+#include "list.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 // Structure représentant un élément de la liste
-typedef struct Noeud {
+struct N {
     Etat *etat;
-    struct Noeud *suivant;
-} Noeud;
+    struct N *suivant;
+};
 
 // Structure représentant la liste
-typedef struct {
+struct l {
     Noeud *debut;
     int taille;
-} Liste;
+};
 
 // Fonction pour initialiser une liste vide
-void initialiserListe(Liste *liste) {
+Liste *initialiserListe() {
+    Liste *liste = malloc(sizeof(Liste));
     liste->debut = NULL;
     liste->taille = 0;
+    return liste;
 }
 
 // Fonction pour enlever un élément en fin de liste

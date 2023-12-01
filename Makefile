@@ -44,9 +44,9 @@ tests : $(EXEC)
 	@$(BASH) ../Test/test_script.sh $(EXEC)
 
 etat.o : etat.h tige.h
-stack.o : tige.h
-main.o : tige.h etat.h
-doc : tige.h etat.h
+tige.o : tige.h
+list.o : list.h etat.h
+main.o : tige.h etat.h list.h
 
 DELIVER_FMT=$(shell date "+$(shell id -un)_%d-%m-%y_%Hh%Mm%Ss")
 

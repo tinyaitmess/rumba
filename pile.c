@@ -6,49 +6,51 @@
 #include <stdlib.h>
 
 // Structure représentant un élément de la liste
-typedef struct Noeud {
+struct N {
     void *element;
-    struct Noeud *suivant;
-} Noeud;
+    struct N *suivant;
+};
 
 // Structure représentant la liste
-typedef struct l {
-    Noeud *debut;
+struct l {
+    Noeud_pile *debut;
     int taille;
-} Pile;
+};
 
 // Fonction pour initialiser une liste vide
-void initialiserPile(Pile *pile) {
+Pile *initialiserPile() {
+    Pile *pile = malloc(sizeof(Pile));
     pile->debut = NULL;
     pile->taille = 0;
+    return pile;
 }
 
 // Fonction pour ajouter un élément au début de la liste
-void ajoutTete(Pile *pile, void *valeur) {
+void ajouterTete(Pile *pile, void *valeur) {
     // Créer un nouveau nœud
-    Noeud *nouveauNoeud = (Noeud *)malloc(sizeof(Noeud));
-    if (nouveauNoeud == NULL) {
+    Noeud_pile *nouveauNoeud_pile = (Noeud_pile *)malloc(sizeof(Noeud_pile));
+    if (nouveauNoeud_pile == NULL) {
         fprintf(stderr, "Erreur d'allocation de mémoire.\n");
         exit(EXIT_FAILURE);
     }
 
     // Affecter la valeur au nouveau nœud
-    nouveauNoeud->element = valeur;
+    nouveauNoeud_pile->element = valeur;
 
     // Lier le nouveau nœud au début de la liste
-    nouveauNoeud->suivant = pile->debut;
-    pile->debut = nouveauNoeud;
+    nouveauNoeud_pile->suivant = pile->debut;
+    pile->debut = nouveauNoeud_pile;
     pile->taille++;
 }
 
-bool estVide(Pile *l) { return l->taille == 0; }
+bool estVidePile(Pile *l) { return l->taille == 0; }
 
 void **pop(Pile *liste) {
     void *tete;
     if (liste->debut == NULL) {
         return NULL;
     }
-    Noeud *precedent = liste->debut;
+    Noeud_pile *precedent = liste->debut;
     tete = liste->debut->element;
     liste->debut = liste->debut->suivant;
     free(precedent);
@@ -58,7 +60,7 @@ void **pop(Pile *liste) {
 
 // Fonction pour afficher les éléments de la liste
 void afficherPile(const Pile *liste) {
-    Noeud *courant = liste->debut;
+    Noeud_pile *courant = liste->debut;
     while (courant != NULL) {
         // TO DO
     }
@@ -66,9 +68,9 @@ void afficherPile(const Pile *liste) {
 }
 
 // Fonction pour libérer la mémoire allouée pour la liste
-void libererListe(Pile *liste) {
-    Noeud *courant = liste->debut;
-    Noeud *temp;
+void libererPile(Pile *liste) {
+    Noeud_pile *courant = liste->debut;
+    Noeud_pile *temp;
 
     while (courant != NULL) {
         temp = courant;
@@ -79,15 +81,20 @@ void libererListe(Pile *liste) {
     liste->debut = NULL;
 }
 
-Pile *filsEtat(Etat *e) {
+Pile *filsEtat(Etat *e, int nv) {
     Pile *l;
     Etat *f;
-    initialiserPile(l);
+
+    l = initialiserPile();
     for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            if (j != i) {
-                f = bouger(e, i, j);
-                ajoutTete(l, f);
+        if (!tigeEmpty(tige_num(e, i))) {
+            for (int j = 0; j < 4; j++) {
+                if (j != i) {
+                    if (!tigeOverflow(tige_num(e, j))) {
+                        f = bouger(e, i, j, nv);
+                        ajouterTete(l, f);
+                    }
+                }
             }
         }
     }

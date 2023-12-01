@@ -7,6 +7,8 @@
 struct s_Etat {
     Tige **pic;
     int heuristique;
+    int mouvement[2];
+    int nv_noeud;
 };
 
 Etat *createEtat() {
@@ -18,6 +20,8 @@ Etat *createEtat() {
     e->heuristique = 0;
     return e;
 }
+
+Tige *tige_num(Etat *e, int i) { return e->pic[i]; }
 
 Etat *pushEtat(int i, Tige *s, Etat *e) {
     e->pic[i] = s;
@@ -32,18 +36,23 @@ bool compareEtats(Etat *e1, Etat *e2) {
     return true;
 }
 
-Etat *bouger(Etat *e, int i, int j) {
+int nv_noeud(Etat *e) { return e->nv_noeud; }
+Etat *bouger(Etat *e, int i, int j, int nv) {
     assert(0 <= i && i < 4 && 0 <= j && j < 4 && i != j);
     assert(!tigeEmpty(e->pic[i]));
     assert(!tigeOverflow(e->pic[j]));
     Etat *res = createEtat();
     memcpy(&res, &e, sizeof(Etat *));
+    res->nv_noeud = nv;
     int top = tigeTop(res->pic[i]);
     tigePop(res->pic[i]);
     tigePush(res->pic[j], top);
+    res->mouvement[0] = i;
+    res->mouvement[1] = j;
     return res;
 }
 
+int *chemin(Etat *e) { return e->mouvement; }
 void afficherEtat(const Etat *e) {
     tigeFourDump(e->pic[0], e->pic[1], e->pic[2], e->pic[3]);
     for (int i = 1; i < 4; i++) {
